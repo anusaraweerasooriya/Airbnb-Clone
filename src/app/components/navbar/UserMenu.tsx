@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { signOut } from "next-auth/react";
 
 import {AiOutlineMenu} from "react-icons/ai";
 import Avatar from "../Avatar";
@@ -90,7 +91,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                                 <MenuItem onClick={() => {}} label="My properties"/>
                                 <MenuItem onClick={() => {}} label="Airbnb my home"/>
                                 <hr/>
-                                <MenuItem onClick={() => {}} label="Logout"/>
+                                <MenuItem onClick={() => signOut()} label="Logout"/>
                             </>
                         ) : (
 
