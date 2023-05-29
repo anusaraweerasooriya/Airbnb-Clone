@@ -9,9 +9,10 @@ import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/UseRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-    currentUser?: User | null;
+    currentUser?: SafeUser | null;
 }
 
 
