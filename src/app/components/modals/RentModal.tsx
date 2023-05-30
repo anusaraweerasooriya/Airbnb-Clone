@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
 import { categories } from "../navbar/Categories";
+import { FieldValues, useForm } from "react-hook-form";
 
 enum STEPS {
     CATEGORY = 0,
@@ -22,6 +23,29 @@ const RentModal = () => {
     const rentModal = useRentModal();
 
     const [step, setStep] = useState(STEPS.CATEGORY);
+
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        formState: {
+            errors,
+        },
+        reset,
+    } = useForm<FieldValues>({
+        defaultValues: {
+            category: "",
+            location: null,
+            guestCount: 1,
+            roomCount: 1,
+            bathRoomCount: 1,
+            imageSrc: "",
+            price: 1,
+            title: "",
+            description: "",
+        }
+    });
 
     const onBack = () => {
         setStep((value) => value - 1);
