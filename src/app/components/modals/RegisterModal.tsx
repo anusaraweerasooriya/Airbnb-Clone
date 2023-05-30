@@ -8,14 +8,17 @@ import {FieldValues, SubmitHandler, useForm} from "react-hook-form"
 import {toast} from "react-hot-toast";
 
 import useRegisterModal from "@/app/hooks/UseRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import LoginModal from "./LoginModal";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {register,handleSubmit, formState:{errors}} = useForm<FieldValues>({
@@ -40,6 +43,11 @@ const RegisterModal = () => {
                 setIsLoading(false);
             })
     }
+
+    const toggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    },[loginModal,registerModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
