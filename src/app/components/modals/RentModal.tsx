@@ -47,6 +47,16 @@ const RentModal = () => {
         }
     });
 
+    const category = watch("category");
+
+    const setCustomValue = (id: string, value: any) => {
+        setValue(id,value, {
+            shouldDirty: true,
+            shouldTouch: true,
+            shouldValidate: true,
+        });
+    }
+
     const onBack = () => {
         setStep((value) => value - 1);
     }
@@ -89,8 +99,8 @@ const RentModal = () => {
                 {categories.map((item) => (
                     <div key={item.label} className="col-span-1">
                         <CategoryInput 
-                            onClick={() => {}}
-                            selected={false}
+                            onClick={(category) => {setCustomValue("category", category)}}
+                            selected={category === item.label}
                             label={item.label}
                             icon={item.icon}
                         />
