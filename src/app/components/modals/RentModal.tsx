@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
+import CountrySelect from "../inputs/CountrySelect";
 import { categories } from "../navbar/Categories";
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -113,8 +114,12 @@ const RentModal = () => {
 
     if (step === STEPS.LOCATION) {
         bodyContent = (
-            <div>
-                Location Step!
+            <div className="flex flex-col gap-8">
+                <Heading  
+                    title="Where is your place located?"
+                    subtitle="Help guests find you!"
+                />
+                <CountrySelect/>
             </div>
         )
     }
