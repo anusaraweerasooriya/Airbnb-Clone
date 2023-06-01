@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
 import CountrySelect from "../inputs/CountrySelect";
+import Counter from "../inputs/Counter";
 import { categories } from "../navbar/Categories";
 import { FieldValues, useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
@@ -133,6 +134,18 @@ const RentModal = () => {
                 <Map center={location?.latlng} />
             </div>
         )
+    }
+
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading 
+                    title="Share some basic about your place"
+                    subtitle="What amenities do you have?"
+                />
+                <Counter />
+            </div>
+        );
     }
     
 
