@@ -8,6 +8,7 @@ import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
 import CountrySelect from "../inputs/CountrySelect";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 import { categories } from "../navbar/Categories";
 import { FieldValues, useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
@@ -167,6 +168,18 @@ const RentModal = () => {
                     onChange={(value) => setCustomValue("bathRoomCount", value)}
                 />
               
+            </div>
+        );
+    }
+
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading 
+                    title="Add a photo of your place"
+                    subtitle="Show guests what your place look like! "
+                />
+                <ImageUpload />
             </div>
         );
     }
