@@ -56,6 +56,7 @@ const RentModal = () => {
     const guestCount = watch("guestCount");
     const roomCount = watch("roomCount");
     const bathRoomCount = watch("bathRoomCount");
+    const imageSrc = watch("imageSrc");
 
     //dynamically re-rendering Map component
     const Map = useMemo(() => dynamic(() => import("../Map"), {
@@ -179,7 +180,10 @@ const RentModal = () => {
                     title="Add a photo of your place"
                     subtitle="Show guests what your place look like! "
                 />
-                <ImageUpload />
+                <ImageUpload  
+                    value={imageSrc}
+                    onChange={(value) => setCustomValue("imageSrc", value)}
+                />
             </div>
         );
     }

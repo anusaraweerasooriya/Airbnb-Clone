@@ -27,7 +27,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <div>
             <CldUploadWidget 
                 onUpload={handleUpload}
-                uploadPreset=""
+                uploadPreset="ux45nm6i"
                 options={{
                     maxFiles: 1
                 }}
@@ -53,7 +53,22 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                                 text-neutral-600
                             "
                         >
-                            <TbPhotoPlus />
+                            <TbPhotoPlus size={50}/>
+                            <div className="font-semibold text-lg">
+                                Click to upload
+                            </div>
+                            {value && (
+                                <div 
+                                    className="absolute insert-0 w-full h-full"
+                                >
+                                    <Image 
+                                        alt="upload"
+                                        fill
+                                        style={{ objectFit: 'cover'}}
+                                        src={value}
+                                    />
+                                </div>
+                            )}
                         </div>
                     )
                 }}
