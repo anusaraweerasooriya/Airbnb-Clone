@@ -29,6 +29,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
             "
         >
             <Heading 
+                center
                 title={title}
                 subtitle={subtitle}
             />
