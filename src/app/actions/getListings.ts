@@ -8,6 +8,7 @@ export default async function getListings() {
                 createdAt: "desc"
             },
         });
+        return listings;
         
     } catch (error: any) {
         throw new Error(error);
