@@ -1,14 +1,16 @@
+import getCurrentUser from "./actions/getCurrentUser";
 import getListings from "./actions/getListings";
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
+import ListingCard from "./components/listings/ListingCard";
 
 
 export default async function Home() {
   const listings = await getListings();
-  console.log(listings);
+  const currentUser = await getCurrentUser();
   
-  if (listings && listings.length === 0) {
+  if (listings.length === 0) {
     return (
       <ClientOnly>
         <EmptyState showReset />
@@ -31,7 +33,15 @@ export default async function Home() {
             gap-8
           "
         >
-          <div>My future listings</div>
+          {listings.map((listing: any) => {
+            return (
+              <ListingCard 
+                currentUser={currentUser}
+                key={listing.id}
+                data={listing}
+              />
+            )
+            })}
         </div>
       </Container>
     </ClientOnly>
