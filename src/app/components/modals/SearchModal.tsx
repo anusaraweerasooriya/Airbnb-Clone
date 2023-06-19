@@ -2,15 +2,17 @@
 
 import { formatISO } from "date-fns";
 import qs from 'query-string';
-
+import dynamic from "next/dynamic";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Range } from "react-date-range";
+
+
 import Modal from "./Modal";
+import Heading from "../Heading";
+import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
 
 import useSearchModal from "@/app/hooks/useSearchModal";
-import { useCallback, useMemo, useState } from "react";
-import { Range } from "react-date-range";
-import dynamic from "next/dynamic";
-import { CountrySelectValue } from "../inputs/CountrySelect";
 
 enum STEPS {
     LOCATION = 0,
@@ -98,6 +100,41 @@ const SearchModal = () => {
         step
     ]);
 
+    const actionLabel = useMemo(() => {
+        if (step === STEPS.INFO) {
+            return "Search";
+        }
+
+        return "Next";
+    } , [step]);
+
+    const secondaryActionLabel = useMemo(() => {
+        if (step === STEPS.LOCATION) {
+            return undefined;
+        }
+
+        return "Back";
+    }, [step]);
+
+
+    let bodyContent = (
+        <div className="flex flex-col gap-8">
+            <Heading 
+                title="Where do you wanna go?"
+                subtitle="Find the perfect location!"
+            />
+            <CountrySelect 
+                value={location}
+                onChange={(value) => 
+                    setLocation(value as CountrySelectValue)
+                }
+            />
+            <hr />
+            <Map center={location?.latlng} />
+        </div>
+    );
+
+
     return (
         <Modal 
             isOpen={searchModal.isOpen}
@@ -105,6 +142,7 @@ const SearchModal = () => {
             onSubmit={searchModal.onOpen}
             title="filters"
             actionLabel="Search"
+            body={bodyContent}
         />
     );
 }
