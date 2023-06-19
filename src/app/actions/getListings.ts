@@ -57,7 +57,7 @@ export default async function getListings(
         }
 
         if (locationValue) {
-            query.roomCount = locationValue;
+            query.locationValue = locationValue;
         }
 
         if (startDate && endDate) {
